@@ -12,7 +12,7 @@
     "build": "./node_modules/.bin/gulp build",
     "dev": "./node_modules/.bin/gulp serve",
     "prepublish": "lodash strict include=get -o bower_components/lodash-custom/lodash-custom.js",
-    "postinstall": "./node_modules/bower/bin/bower install && node ./node_modules/.bin/gulp build"
+    "postinstall": "./node_modules/bower/bin/bower install && node node_modules/.bin/gulp build"
   },
   "devDependencies": {
     "babel-core": "~6.10.4",
