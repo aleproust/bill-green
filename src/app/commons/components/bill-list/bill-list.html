@@ -1,0 +1,22 @@
+<div class="container">
+  <table class="bill-list">
+    <tr class="bill-list-header">
+      <th>Numéro de devis</th>
+      <th>Date</th>
+      <th>Nom du client</th>
+      <th>Prix TTC</th>
+      <th>Actions</th>
+    </tr>
+    <tr class="bill-list-data" ng-repeat="bill in $ctrl.billList track by $index">
+      <td>{{bill.data.number}}</td>
+      <td>{{bill.data.date | date:'dd/MM/yyyy'}}</td>
+      <td>{{bill.data.customerName}}</td>
+      <td>{{bill.data.billTotalTTC | number:2}}</td>
+      <td><a ng-href="http://localhost:8089/api/files/{{bill.data.number}}" download="{{bill.data.number}}_{{bill.data.number}}.docx">
+            <button ng-click="$ctrl.print({bill:bill})">Imprimer</button>
+          </a>
+      <button ng-click="$ctrl.edit({bill:bill})">Editer</button>
+
+    </tr>
+  </table>
+</div>

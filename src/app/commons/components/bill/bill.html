@@ -1,0 +1,38 @@
+<form novalidate name='billForm'>
+  <div class="row-textbox">
+    <input type="text" ng-model="$ctrl.bill.customerName" placeholder="Nom du client" required>
+    <!-- Date à mettre dans un composant -->
+    <input type="date" ng-model="$ctrl.bill.date" placeholder="DD/MM/AAAA" required>
+  </div>
+  <h2>Intervention</h2>
+  <div class="post-intervention">
+    <input type="text" ng-model="$ctrl.intervention.libelle" placeholder="Libellé">
+    <input type="number" ng-model="$ctrl.intervention.priceHT" placeholder="Prix">€ .HT
+
+    <label>TVA</label>
+    <select type="text" ng-model="$ctrl.intervention.tva">
+      <option ng-repeat="tva in $ctrl.tvaChoices" value="{{tva}}">{{tva}}</option>
+  </select>
+    <p class="strong post-intervention">{{$ctrl.intervention.priceHT | TTCPrice:$ctrl.intervention.tva | number:2}} €</p>
+  </div>
+  <button ng-click="$ctrl.postIntervention($ctrl.intervention)">Ajouter</button>
+  <div class="interventions" ng-repeat="intervention in $ctrl.bill.interventions track by $index">
+    {{intervention.libelle}} {{intervention.priceHT}} {{intervention.tva}} {{intervention.priceTTC | number:2}}
+    <span class="icon-drawer" ng-click="$ctrl.editIntervention(intervention)"></span>
+    <span class="icon-box-remove" ng-click="$ctrl.removeIntervention(intervention)"></span>
+  </div>
+  <p class="strong"> Prix Total : {{ $ctrl.bill.billTotalTTC | number:2 }}</p>
+
+  <!-- Partie facture -->
+  <div ng-if="$ctrl.bill.type !=='DEVIS'">
+     <label for="paid" class="label-paid control control--checkbox">
+          <input type="checkbox" id="paid" value="rue" ng-model="$ctrl.bill.isPaid"/>
+          <div class="control__indicator"></div>
+          Payée
+        </label>
+    <input type="text" ng-model="paidMethod" placeholder="Méthode de paiement"/>
+  </div>
+  <button ng-disabled="$ctrl.billForm.$invalid" ng-click="$ctrl.saveBill($ctrl.bill)">Enregistrer</button>
+  </div>
+
+</form>

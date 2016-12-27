@@ -1,0 +1,5 @@
+<div class="container">
+  <h1>Liste des factures</h1>
+  <button ng-click="$ctrl.newBill()">Ajouter une facture</button>
+  <bill-list bill-list='$ctrl.billList' edit="$ctrl.editBill(bill)" print="$ctrl.print(bill)"></bill-list>
+</div>

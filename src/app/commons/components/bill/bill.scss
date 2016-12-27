@@ -1,0 +1,19 @@
+bill{
+
+  .row-textbox{
+    width:100%;
+    display: flex;
+    justify-content:space-between;
+  }
+
+  .post-intervention{
+
+  }
+  .interventions{
+    min-height: 3rem;
+    background-color:$white-spirit;
+    font-size: 2rem;
+    line-height: 3rem;
+    margin-bottom: 1rem;
+  }
+}
