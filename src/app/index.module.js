@@ -8,7 +8,6 @@ import { runBlock } from './index.run';
 // Modules
 import './commons/commons.module';
 import './subscription/subscription.module';
-import './twitter/twitter.module';
 import './quotation/quotation.module';
 import './billing/billing.module';
 
@@ -17,7 +16,6 @@ angular.module('bill',
   [
     'ngtweet',
     'ui.router',
-    'bill.twitter',
     'bill.subscription',
     'bill.quotation',
     'bill.commons',
