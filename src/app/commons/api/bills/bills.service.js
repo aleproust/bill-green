@@ -6,26 +6,26 @@ export class BillsService {
   }
 
   getBill(number){
-    return this._$http.get(`${this._CONFIG.URL_API}/bills/${number}`)
+    return this._$http.get(`api/bills/${number}`)
 
   }
 
   getBills(){
-    return this._$http.get(`${this._CONFIG.URL_API}/bills?type=FACTURE`)
+    return this._$http.get(`api/bills?type=FACTURE`)
   }
 
   getQuotation(){
-    return this._$http.get(`${this._CONFIG.URL_API}/bills?type=DEVIS`)
+    return this._$http.get(`api/bills?type=DEVIS`)
   }
 
   putBill(bill){
-    return this._$http.put(`${this._CONFIG.URL_API}/bills/${bill.number}`, bill)
+    return this._$http.put(`api/bills/${bill.number}`, bill)
   }
 
   postBill(bill){
     bill.formattedDate = moment(bill.date).format('(DD/MM/YYYY')
     bill.number = this.generateBillNumber()
-    return this._$http.post(`${this._CONFIG.URL_API}/bills/${bill.number}`, bill)
+    return this._$http.post(`api/bills/${bill.number}`, bill)
     .then(({number}) =>  number === bill.number)
   }
 
@@ -34,6 +34,6 @@ export class BillsService {
   }
 
   getBillDoc(billNumber){
-    return this._$http.get(`${this._CONFIG.URL_API}/files/${billNumber}`)
+    return this._$http.get(`api/files/${billNumber}`)
   }
 }
