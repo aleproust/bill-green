@@ -19,6 +19,7 @@ export class BillsService {
   }
 
   putBill(bill){
+    bill.formattedDate = moment(bill.date).format('DD/MM/YYYY')
     return this._$http.put(`/api/bills/${bill.number}`, bill)
   }
 
