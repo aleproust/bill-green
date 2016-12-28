@@ -23,7 +23,7 @@ export class BillsService {
   }
 
   postBill(bill){
-    bill.formattedDate = moment(bill.date).format('(DD/MM/YYYY')
+    bill.formattedDate = moment(bill.date).format('DD/MM/YYYY')
     bill.number = this.generateBillNumber()
     return this._$http.post(`/api/bills/${bill.number}`, bill)
     .then(({number}) =>  number === bill.number)
