@@ -15,7 +15,7 @@ app.get('/', function(req, res) {
     // make sure index is in the right directory. In this case /app/index.html
     res.render('index');
 });
-
+console.log(target)
 app.use('/api', proxyMiddleware({target: target}))
 
 app.listen(port, function() {
