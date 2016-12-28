@@ -10,13 +10,15 @@ let target = process.env.API || 'http://localhost:3003/api'
 // make express look in the public directory for assets (css/js/img)
 app.use(express.static(__dirname + '/dist'));
 
+console.log(target)
+app.use('/v1/', proxyMiddleware({target: target}))
+
 // set the home page route
 app.get('/', function(req, res) {
     // make sure index is in the right directory. In this case /app/index.html
     res.render('index');
 });
-console.log(target)
-app.use('/api', proxyMiddleware({target: target}))
+
 
 app.listen(port, function() {
     console.log('Our app is running on http://localhost:' + port);
