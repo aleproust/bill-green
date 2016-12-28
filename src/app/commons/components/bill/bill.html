@@ -1,38 +1,64 @@
 <form novalidate name='billForm'>
   <div class="row-textbox">
+    <input class="bill-date" type="date" ng-model="$ctrl.bill.date" placeholder="DD/MM/AAAA" required>
+  </div>
+  <div class="row-textbox">
     <input type="text" ng-model="$ctrl.bill.customerName" placeholder="Nom du client" required>
-    <!-- Date à mettre dans un composant -->
-    <input type="date" ng-model="$ctrl.bill.date" placeholder="DD/MM/AAAA" required>
+    <input type="text" ng-model="$ctrl.bill.customerAddress" placeholder="Addresse" required uib-typeahead="suggestion.properties.name for suggestion in $ctrl.getStreetList($viewValue, $ctrl.bill.customerPostalCode)"
+      typeahead-wait-ms="250">
+    <input type="text" ng-model="$ctrl.bill.customerPostalCode" placeholder="Code postal" maxlength="5" ng-minlength="5" ng-pattern="/^[0-9]{5}$/"
+      ng-model-options="{'updateOn': 'default blur', 'debounce': {'default': 250,'blur': 0}}" ng-change="$ctrl.onPostalCodeUpdate($ctrl.bill.customerPostalCode)"
+      required>
+
+    <select name="city" id="info-city" class="bill-city" ng-model="$ctrl.bill.customerCity" ng-options="city as
+      city.city for city in $ctrl.availableCities" required>
+        <option value="">--Ville--</option>
+    </select>
+
+
   </div>
   <h2>Intervention</h2>
-  <div class="post-intervention">
-    <input type="text" ng-model="$ctrl.intervention.libelle" placeholder="Libellé">
-    <input type="number" ng-model="$ctrl.intervention.priceHT" placeholder="Prix">€ .HT
+  <div class="row-textbox">
+    <div>
+      <input type="text" ng-model="$ctrl.intervention.libelle" placeholder="Libellé">
+      <input type="number" ng-model="$ctrl.intervention.priceHT" placeholder="Prix HT">
+    </div>
+    <div>
+      <select ng-model="$ctrl.intervention.tva" ng-options="tva as tva for tva in $ctrl.tvaChoices">
+        <option value="">TVA</option>
+    </select>
+      <label class="strong">{{$ctrl.intervention.priceHT | TTCPrice:$ctrl.intervention.tva | number:2}} €</label>
+    </div>
 
-    <label>TVA</label>
-    <select type="text" ng-model="$ctrl.intervention.tva">
-      <option ng-repeat="tva in $ctrl.tvaChoices" value="{{tva}}">{{tva}}</option>
-  </select>
-    <p class="strong post-intervention">{{$ctrl.intervention.priceHT | TTCPrice:$ctrl.intervention.tva | number:2}} €</p>
   </div>
   <button ng-click="$ctrl.postIntervention($ctrl.intervention)">Ajouter</button>
-  <div class="interventions" ng-repeat="intervention in $ctrl.bill.interventions track by $index">
-    {{intervention.libelle}} {{intervention.priceHT}} {{intervention.tva}} {{intervention.priceTTC | number:2}}
-    <span class="icon-drawer" ng-click="$ctrl.editIntervention(intervention)"></span>
-    <span class="icon-box-remove" ng-click="$ctrl.removeIntervention(intervention)"></span>
+  <h3>Interventions ajoutées</h3>
+  <table class="interventions">
+    <tr class="bill-list-data" ng-repeat="intervention in $ctrl.bill.interventions track by $index">
+      <td class="intervention-libelle">{{intervention.libelle}}</td>
+      <td class="intervention-priceHT">{{intervention.priceHT}}€ </td>
+      <td class="intervention-tva">{{intervention.tva}}</td>
+      <td class="intervention-priceTTC">{{intervention.priceTTC | number:2}}€</td>
+      <td class="intervention-action">
+        <span class="icon-pencil2" ng-click="$ctrl.editIntervention(intervention)"></span>
+        <span class="icon-cross" ng-click="$ctrl.removeIntervention(intervention)"></span>
+      </td>
+    </tr>
+  </table>
+
   </div>
-  <p class="strong"> Prix Total : {{ $ctrl.bill.billTotalTTC | number:2 }}</p>
+  <p class="strong bill-total"> Prix Total TTC : {{ $ctrl.bill.billTotalTTC | number:2 }}€</p>
 
   <!-- Partie facture -->
-  <div ng-if="$ctrl.bill.type !=='DEVIS'">
-     <label for="paid" class="label-paid control control--checkbox">
-          <input type="checkbox" id="paid" value="rue" ng-model="$ctrl.bill.isPaid"/>
+  <divclass="row-textbox" ng-if="$ctrl.bill.type !=='DEVIS'">
+    <label for="paid" class="label-paid control control--checkbox">
+          <input type="checkbox" id="paid" value="true" ng-model="$ctrl.bill.isPaid"/>
           <div class="control__indicator"></div>
           Payée
         </label>
-    <input type="text" ng-model="paidMethod" placeholder="Méthode de paiement"/>
-  </div>
-  <button ng-disabled="$ctrl.billForm.$invalid" ng-click="$ctrl.saveBill($ctrl.bill)">Enregistrer</button>
-  </div>
+    <input type="text" ng-model="paidMethod" placeholder="Méthode de paiement" />
+    </div>
+    <button ng-disabled="$ctrl.billForm.$invalid" ng-click="$ctrl.saveBill($ctrl.bill)">Enregistrer</button>
+    </div>
 
 </form>

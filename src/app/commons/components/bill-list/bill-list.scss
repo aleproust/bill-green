@@ -1,0 +1,32 @@
+bill-list{
+
+
+  .bill-list{
+    width: 100%;
+    border-collapse : collapse;
+    th{
+      background-color: $green-fox;
+      color: $white-spirit;
+      font-size: 1.3rem;
+      padding: 0.2rem;
+      text-align: center;
+      border: none;
+    }
+    td{
+      padding: 0;
+       border-right: none;
+       border-left: 0;
+      text-align: center
+    }
+
+    tr{
+      background-color: $white-spirit;
+    }
+    .action-button{
+      margin:0 0.2rem;
+      color: $green-fox;
+      display: inline-block;
+      font-size: 2rem;
+    }
+  }
+}

@@ -3,17 +3,66 @@ bill{
   .row-textbox{
     width:100%;
     display: flex;
-    justify-content:space-between;
+    flex-direction: row;
+    flex-wrap:wrap;
+    justify-content: flex-start;
   }
-
+  .bill-date{
+    float: right;
+  }
+  .bill-city{
+    width: 30rem;
+  }
   .post-intervention{
 
   }
+
   .interventions{
-    min-height: 3rem;
-    background-color:$white-spirit;
-    font-size: 2rem;
-    line-height: 3rem;
+    width: 100%;
+
+    font-size: 1.3rem;
     margin-bottom: 1rem;
+
+      border-collapse: collapse;
+    tr{
+      height: 5rem;
+    }
+    td{
+      padding: 0rem;
+      background-color:$white-spirit;
+      border-right: 1px solid $white-forit;
+    }
+    .intervention-libelle{
+      font-size: 1.8rem;
+      width: 10rem;
+    }
+    .intervention-priceHT{
+      text-align: center;
+    }
+    .intervention-tva{
+      font-size: 1.2rem;
+      text-align: center;
+    }
+
+    .intervention-priceTTC{
+      text-align: center;
+      font-weight: bold;
+    }
+    .intervention-action{
+      text-align: center;
+      color: $green-fox;
+      font-size: 2rem;
+    }
+  }
+
+  .bill-total{
+    float: right;
   }
 }
+
+@media (min-width: 750px) {
+  bill {
+    display: block
+  }
+}
+

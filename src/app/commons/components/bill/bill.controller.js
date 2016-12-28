@@ -1,41 +1,37 @@
 export class BillController {
 
-  constructor(){
+  constructor(CityService) {
     'ngInject'
+    this._CityService = CityService
   }
 
-  $onInit(){
-    this.tvaChoices = [10, 20]
-
-    // this.bill =this.bill || {
-    //   interventions:[],
-    //   type: this.mode ==='quotation' ? 'DEVIS':'FACTURE',
-    //   date:'',
-    //   customerName:'',
-    //   billTotalTTC : 0,
-    //   billTotalHT : 0,
-    //   paid:false,
-    //   paidDate:'',
-    //   paidMethod:''
-    // }
+  $onInit() {
+    this.availableCities = []
+    this.tvaChoices = ['10', '20']
+    if(this.bill && this.bill.customerCity){
+      this.availableCities[0] = this.bill.customerCity
+    }
 
     this.newIntervention()
 
   }
 
-  newIntervention(){
+  newIntervention() {
     this.intervention = {
-      libelle:'',
-      priceHT:'',
-      tva:''
+      libelle: '',
+      priceHT: '',
+      tva: ''
     }
   }
 
-  postIntervention(intervention){
+  postIntervention(intervention) {
     let {libelle, priceHT, tva} = intervention
-    let priceTTC = parseFloat((((tva/100)+1) * priceHT).toFixed(2))
+    let priceTTC = parseFloat((((tva / 100) + 1) * priceHT).toFixed(2))
     this.bill.interventions.push({
-      libelle, priceHT, tva, priceTTC
+      libelle,
+      priceHT,
+      tva,
+      priceTTC
     })
     this.bill.billTotalHT += priceHT
     this.bill.billTotalTTC += priceTTC
@@ -43,13 +39,53 @@ export class BillController {
 
   }
 
-  $onChanges(){
-
+  editIntervention(intervention){
+    let {libelle, priceHT, priceTTC, tva} = intervention
+    this.intervention = {
+      libelle,
+      priceHT,
+      tva,
+      priceTTC
+    }
+    this.removeIntervention(intervention)
   }
 
-  saveBill(bill){
-    this.onSave({bill})
+  removeIntervention(intervention){
+    let removeIndex = this.bill.interventions.indexOf(intervention)
+    this.bill.interventions.splice(removeIndex, 1)
+  }
+  $onChanges() {}
+
+  saveBill(bill) {
+    this.onSave({
+      bill
+    })
   }
 
+
+  getStreetList(tempStreetName, postalCode) {
+    return this._CityService.getStreetList(tempStreetName, postalCode);
+  }
+
+  onPostalCodeUpdate(postalCode) {
+    if (postalCode) {
+      this.availableCities = [];
+      this.availableCitiesLoading = true;
+      return this._CityService.getCityNameByCP(postalCode)
+        .then(listeVille => {
+          this.availableCitiesError = false;
+          this.availableCitiesLoading = false;
+          this.availableCities = listeVille;
+          if (this.availableCities.length === 1) {
+            this.bill.customerCity = this.availableCities[0];
+          }
+        })
+        .catch(() => {
+          this.bill.customerCity = null;
+          this.availableCitiesLoading = false;
+          this.availableCities = [];
+        })
+    }
+  }
 }
 export default BillController

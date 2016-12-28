@@ -18,6 +18,7 @@ export function config ($logProvider, $httpProvider, ErrorServiceProvider) {
         return response.data
       }
       else{
+
         return response
       }
     },
@@ -26,5 +27,5 @@ export function config ($logProvider, $httpProvider, ErrorServiceProvider) {
     }
   }
   ))
-  $httpProvider.defaults.withCredentials = true;
+
 }

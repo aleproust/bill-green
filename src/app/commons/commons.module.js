@@ -17,7 +17,7 @@ import { BillListComponent} from './components/bill-list/bill-list.component'
 import { MainMenuComponent} from './components/main-menu/main-menu.component'
 // Commons Services
 import { ErrorService } from './services/error/error.service'
-
+import { CityService } from './services/city/city.service'
 // Commons Api Services
 import { BillsService } from './api/bills/bills.service'
 // Commons Filters
@@ -33,7 +33,7 @@ let CommonsModule = angular.module('bill.commons', [])
 
   // Services communs
   .service('ErrorService', ErrorService)
-
+  .service('CityService', CityService)
   .service('BillsService', BillsService)
   //Filters
   .filter('TTCPrice', TTCPriceFilter)
@@ -50,6 +50,7 @@ let CommonsModule = angular.module('bill.commons', [])
   .component('bill', BillComponent)
   .component('billList', BillListComponent)
   .component('mainMenu', MainMenuComponent)
+
   .value('EventEmitter', payload => ({ $event: payload }))
 
   // Routes

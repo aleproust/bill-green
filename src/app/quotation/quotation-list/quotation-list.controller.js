@@ -1,8 +1,9 @@
 export class QuotationListController {
 
-  constructor(BillsService, $state) {
+  constructor(BillsService, FileSaver, $state) {
     'ngInject'
     this._BillsService = BillsService
+    this._FileSaver = FileSaver
     this._$state = $state
   }
 
@@ -12,13 +13,19 @@ export class QuotationListController {
       .then(bills => this.billList = bills)
   }
 
-  newQuotation(){
+  newQuotation() {
     this._$state.go('^.new')
 
   }
 
-  editQuotation(bill){
-    this._$state.go('^.edit', {bill:bill})
+  print(bill) {
+    return this._BillsService.getBillDoc(bill.number)
+  }
+
+  editQuotation(bill) {
+    this._$state.go('^.edit', {
+      bill: bill
+    })
   }
 
 }

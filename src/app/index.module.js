@@ -18,7 +18,8 @@ angular.module('bill',
     'bill.subscription',
     'bill.quotation',
     'bill.commons',
-    'bill.billing'
+    'bill.billing',
+    'ngFileSaver'
   ])
   .constant('moment', moment)
   .config(config)
