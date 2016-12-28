@@ -1,3 +1,3 @@
 export let ConfigConstants = {
-  URL_API:'https://bill-api.herokuapp.com/api'
+  URL_API:'http://localhost:8089/api'
 }
