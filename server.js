@@ -11,7 +11,7 @@ let target = process.env.API || 'http://localhost:3003/api'
 app.use(express.static(__dirname + '/dist'));
 
 console.log(target)
-app.use('/v1/', proxyMiddleware({target: target}))
+app.use('/api/', proxyMiddleware({target: target}))
 
 // set the home page route
 app.get('/', function(req, res) {
