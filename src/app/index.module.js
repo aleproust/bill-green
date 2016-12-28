@@ -14,7 +14,6 @@ import './billing/billing.module';
 // Routes
 angular.module('bill',
   [
-    'ngtweet',
     'ui.router',
     'bill.subscription',
     'bill.quotation',
