@@ -53,7 +53,10 @@ export class BillController {
   removeIntervention(intervention){
     let removeIndex = this.bill.interventions.indexOf(intervention)
     this.bill.interventions.splice(removeIndex, 1)
+    this.bill.billTotalHT -= intervention.priceHT
+    this.bill.billTotalTTC -= intervention.priceTTC
   }
+
   $onChanges() {}
 
   saveBill(bill) {
