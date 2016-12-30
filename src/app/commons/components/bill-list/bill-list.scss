@@ -1,7 +1,7 @@
 bill-list{
 
-
   .bill-list{
+    margin-top:1rem;
     width: 100%;
     border-collapse : collapse;
     th{
@@ -20,6 +20,11 @@ bill-list{
     }
 
     tr{
+      &:first-child{
+        height: 2rem;
+      }
+      height: 4rem;
+      border-bottom: 3px solid $white-forit;
       background-color: $white-spirit;
     }
     .action-button{

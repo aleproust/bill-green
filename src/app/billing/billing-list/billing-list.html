@@ -2,5 +2,6 @@
   <h1>Liste des factures</h1>
   <button ng-click="$ctrl.newBill()">Ajouter une facture</button>
   Factures du mois <input type="month" ng-change="$ctrl.changeMonth($ctrl.selectedMonth)" ng-model="$ctrl.selectedMonth" />
+  Total des factures payées : <strong>{{$ctrl.monthInvoice}} € .HT</strong>
   <bill-list bill-list='$ctrl.billList' edit="$ctrl.editBill(bill)" print="$ctrl.print(bill)"></bill-list>
 </div>

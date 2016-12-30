@@ -1,8 +1,9 @@
 export class StepNewBillController {
 
-  constructor(BillsService) {
+  constructor(BillsService, $state) {
     'ngInject'
     this._BillsService = BillsService
+    this._$state = $state
   }
 
   $onInit() {

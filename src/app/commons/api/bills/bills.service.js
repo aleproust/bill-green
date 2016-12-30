@@ -31,6 +31,7 @@ export class BillsService {
     return this._$http.post(`/api/bills/find`, payload)
     .then(bills => bills.filter(bill => bill.data.type === type))
   }
+
   postBill(bill) {
     bill.formattedDate = moment(bill.date).format('DD/MM/YYYY')
     bill.number = this.generateBillNumber()
@@ -44,5 +45,15 @@ export class BillsService {
 
   getBillDoc(billNumber) {
     return this._$http.get(`/api/files/${billNumber}`)
+  }
+
+  calculateInvoice(billList){
+    let result = 0.00
+    billList.forEach(bill => {
+      if(bill.data.isPaid){
+        result += parseFloat(bill.data.billTotalHT)
+      }
+    })
+    return result
   }
 }
