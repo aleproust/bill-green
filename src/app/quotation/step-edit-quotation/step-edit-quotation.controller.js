@@ -24,6 +24,7 @@ export class StepEditQuotationController {
     this._BillsService.putBill(bill)
       .then(() => {
         console.log('Bill bien maj')
+        this._$state.go('^.list')
       })
   }
 

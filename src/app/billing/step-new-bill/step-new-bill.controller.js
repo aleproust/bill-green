@@ -30,6 +30,7 @@ export class StepNewBillController {
 
   postBill(bill){
     this._BillsService.postBill(bill)
+    .then(() => this._$state.go('root.billing.list'))
 
   }
 

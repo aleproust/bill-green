@@ -1,8 +1,9 @@
 export class StepNewQuotationController {
 
-  constructor(BillsService){
+  constructor(BillsService, $state){
     'ngInject'
     this._BillsService = BillsService
+    this._$state = $state
   }
 
   $onInit(){
@@ -23,6 +24,7 @@ export class StepNewQuotationController {
 
   postBill(bill){
     this._BillsService.postBill(bill)
+    .then(() => this._$state.go('root.quotation.list'))
   }
 
 }

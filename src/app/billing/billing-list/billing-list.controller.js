@@ -7,7 +7,9 @@ export class BillingListController {
   }
 
   $onInit() {
-    this._BillsService.getBills().then(bills => this.billList = bills)
+    this.selectedMonth = new Date();
+    this._BillsService.findBillsByMonth(this.selectedMonth, 'FACTURE')
+      .then(bills => this.billList = bills)
   }
 
   newBill() {
@@ -20,5 +22,9 @@ export class BillingListController {
     })
   }
 
+  changeMonth(month){
+    this._BillsService.findBillsByMonth(month)
+      .then(bills => this.billList = bills)
+  }
 }
 export default BillingListController

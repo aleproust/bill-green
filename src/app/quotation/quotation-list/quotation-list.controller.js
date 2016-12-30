@@ -8,8 +8,9 @@ export class QuotationListController {
   }
 
   $onInit() {
+    this.selectedMonth = new Date();
     this.billList = undefined
-    this._BillsService.getQuotation()
+    this._BillsService.findBillsByMonth(this.selectedMonth, 'DEVIS')
       .then(bills => this.billList = bills)
   }
 
@@ -28,5 +29,9 @@ export class QuotationListController {
     })
   }
 
+  changeMonth(month){
+    this._BillsService.findBillsByMonth(month, 'DEVIS')
+      .then(bills => this.billList = bills)
+  }
 }
 export default QuotationListController

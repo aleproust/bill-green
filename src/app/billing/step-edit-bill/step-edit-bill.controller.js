@@ -17,6 +17,7 @@ export class StepEditBillController {
 
   put(bill){
     this._BillsService.putBill(bill)
+    .then(() => this._$state.go('^.list'))
 
   }
 
