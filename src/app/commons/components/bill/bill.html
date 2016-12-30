@@ -51,13 +51,15 @@
 
   <!-- Partie facture -->
   <div class="row-textbox" ng-if="$ctrl.bill.type !=='DEVIS'">
+
     <label for="paid" class="label-paid control control--checkbox">
           <input type="checkbox" id="paid" value="true" ng-model="$ctrl.bill.isPaid"/>
           <div class="control__indicator"></div>
           Payée
         </label>
+   </div>
     <input type="text" ng-model="paidMethod" placeholder="Méthode de paiement" />
-  </div>
+
   <button ng-disabled="$ctrl.billForm.$invalid" ng-click="$ctrl.saveBill($ctrl.bill)">Enregistrer</button>
 
 

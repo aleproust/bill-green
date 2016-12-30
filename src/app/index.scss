@@ -804,33 +804,19 @@ hr {
 }
 
 
+
 /* Check mark */
-
 .control__indicator:after {
-    position: absolute;
-    display: none;
-    content: '';
+	position: absolute;
+	display: none;
+	content: '';
 }
-
 
 /* Show check mark */
-
-.control input:checked~.control__indicator:after {
-    display: block;
+.control input:checked ~ .control__indicator:after {
+	display: block;
 }
 
-
-/* Checkbox tick */
-
-.control--checkbox .control__indicator:after {
-    top: 0.2rem;
-    left: 0.7rem;
-    width: 0.45rem;
-    height: 1.2rem;
-    transform: rotate(45deg);
-    border: solid $green-fox;
-    border-width: 0 0.2rem 0.2rem 0;
-}
 
 
 /* Disabled tick colour */
@@ -950,12 +936,12 @@ Check box
 **/
 /* Checkbox tick */
 .control--checkbox .control__indicator:after {
-	top: 0.2rem;
-	left: 1rem;
+	top: -0.1rem;
+	left: 0.6rem;
 	width: 0.6rem;
 	height: 1.8rem;
 	transform: rotate(45deg);
-	border: solid $gray-jean;
+	border: solid $green-fox;
 	border-width: 0 0.2rem 0.2rem 0;
 }
 

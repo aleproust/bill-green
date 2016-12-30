@@ -20,7 +20,15 @@ bill-list{
     }
 
     tr{
+      &:hover{
+        opacity: .7;
+      }
+      cursor:pointer;
       &:first-child{
+        &:hover{
+          opacity: 1;
+        }
+        cursor:default;
         height: 2rem;
       }
       height: 4rem;
