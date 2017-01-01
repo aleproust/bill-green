@@ -56,4 +56,13 @@ export class BillsService {
     })
     return result
   }
+  
+  findBillByCustomer(customer, type){
+    let payload = {
+        criteria:'customerName',
+        value:customer
+    }
+    return this._$http.post(`/api/bills/find`, payload)
+    .then(bills => bills.filter(bill => bill.data.type === type))
+  }
 }

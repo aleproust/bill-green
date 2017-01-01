@@ -29,5 +29,9 @@ export class BillingListController {
         this.monthInvoice = this._BillsService.calculateInvoice(bills)
       })
   }
+
+//   findBillsByCustomer(customer){
+//     this._BillsService.findBillByCustomer(customer, 'FACTURE').then(bills => this.billList = bills)
+//   }
 }
 export default BillingListController

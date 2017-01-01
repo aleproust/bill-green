@@ -10,7 +10,7 @@ export class StepNewQuotationController {
     this.quotation = {
       interventions:[],
       type: 'DEVIS',
-      date:'',
+      date: new Date(),
       customerName:'',
       billTotalTTC : 0,
       billTotalHT : 0,

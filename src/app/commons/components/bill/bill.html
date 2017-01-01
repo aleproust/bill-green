@@ -32,7 +32,8 @@
 
   </div>
   <button ng-click="$ctrl.postIntervention($ctrl.intervention)">Ajouter</button>
-  <h3>Interventions ajoutées</h3>
+  <h3 ng-if="$ctrl.bill.interventions.length">Interventions ajoutées</h3>
+  <h3 ng-if="!$ctrl.bill.interventions.length">Pas d'interventions</h3>
   <table class="interventions">
     <tr class="bill-list-data" ng-repeat="intervention in $ctrl.bill.interventions track by $index">
       <td class="intervention-libelle">{{intervention.libelle}}</td>
@@ -57,11 +58,11 @@
           <div class="control__indicator"></div>
           Payée
         </label>
-    <input type="text" ng-model="paidMethod" placeholder="Méthode de paiement" />
+    <input type="text" class="bill-paid-method" ng-model="paidMethod" placeholder="Méthode de paiement" />
    </div>
 
 
-  <button ng-disabled="$ctrl.billForm.$invalid" ng-click="$ctrl.saveBill($ctrl.bill)">Enregistrer</button>
+  <button class="button button-primary" ng-disabled="$ctrl.billForm.$invalid" ng-click="$ctrl.saveBill($ctrl.bill)">Enregistrer</button>
 
 
 </form>

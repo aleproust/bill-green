@@ -1,3 +1,4 @@
+<!--<input type="text" placeholder="Recherche par nom" ng-change="$ctrl.find()" ng-model="$ctrl.customerFind"/>-->
 <table class="bill-list">
   <tr class="bill-list-header">
     <th>N°</th>
@@ -5,15 +6,15 @@
     <th>Nom du client</th>
     <th>Actions</th>
   </tr>
-  <tr class="bill-list-data" ng-repeat="bill in $ctrl.billList track by $index" ng-click="$ctrl.edit({bill:bill})">
-    <td>{{bill.data.number}}</td>
-    <td>{{bill.data.date | date:'dd/MM/yy'}}</td>
-    <td>{{bill.data.customerName}}</td>
+  <tr class="bill-list-data" ng-repeat="bill in $ctrl.billList track by $index">
+    <td ng-click="$ctrl.edit({bill:bill})">{{bill.data.number}}</td>
+    <td ng-click="$ctrl.edit({bill:bill})">{{bill.data.date | date:'dd/MM/yy'}}</td>
+    <td ng-click="$ctrl.edit({bill:bill})">{{bill.data.customerName}}</td>
     <td>
       <!--<a ng-href="http://localhost:8089/api/files/{{bill.data.number}}" download="{{bill.data.number}}_{{bill.data.number}}.docx">
       -->
 
-      <a ng-href="https://bill-api.herokuapp.com/api/files/{{bill.data.number}}" download="{{bill.data.number}}_{{bill.data.number}}.docx">
+      <a ng-href="http://bills-api.herokuapp.com/api/files/{{bill.data.number}}" download="{{bill.data.number}}_{{bill.data.number}}.docx">
       <span class="action-button item-icon icon-download2"></span>
       </a>
   </tr>

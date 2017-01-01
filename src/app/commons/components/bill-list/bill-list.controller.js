@@ -8,5 +8,9 @@ export class BillListController {
 
   }
 
+  find(){
+    this.findByCustomer({customer:this.customerFind})
+  }
+
 }
 export default BillListController

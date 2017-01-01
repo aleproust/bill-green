@@ -21,5 +21,9 @@ export class StepEditBillController {
 
   }
 
+  duplicate(bill){
+      this._$state.go('^.new', {bill: bill});
+  }
+
 }
 export default StepEditBillController

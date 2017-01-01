@@ -1,4 +1,6 @@
 <div class="container">
   <a ui-sref="root.billing.list" class="button button-back">Retour aux factures</a>
   <bill bill="$ctrl.editBill" on-save="$ctrl.put(bill)"></bill>
+  <button ng-click="$ctrl.duplicate($ctrl.bill)">Dupliquer</button>
+  <!--<button class="button button-warn"ng-click="$ctrl.remove($ctrl.bill)">Supprimer</button>-->
 </div>

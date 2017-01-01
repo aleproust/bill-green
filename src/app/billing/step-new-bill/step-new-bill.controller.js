@@ -16,7 +16,7 @@ export class StepNewBillController {
       this.editBill = {
         interventions: [],
         type: 'FACTURE',
-        date: '',
+        date: new Date(),
         customerName: '',
         billTotalTTC: 0,
         billTotalHT: 0,
