@@ -5,8 +5,7 @@ export let BillListComponent = {
   bindings: {
     billList :'<',
     edit:'&',
-    print:'&',
-    findByCustomer:'&'
+    print:'&'
   },
   templateUrl: 'app/commons/components/bill-list/bill-list.html',
   controller: BillListController

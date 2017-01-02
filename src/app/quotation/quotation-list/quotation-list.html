@@ -1,6 +1,9 @@
 <div class="container">
   <h1>Liste des devis</h1>
   <button ng-click="$ctrl.newQuotation()">Ajouter un devis</button>
-  Devis du mois <input type="month" ng-change="$ctrl.changeMonth($ctrl.selectedMonth)" ng-model="$ctrl.selectedMonth" />
+    <div class="row-filter">
+    <input type="month" ng-change="$ctrl.changeMonth($ctrl.selectedMonth)" ng-model="$ctrl.selectedMonth" />
+    <input type="text" placeholder="Recherche par nom" ng-change="$ctrl.findByCustomer($ctrl.customerFind)" ng-model="$ctrl.customerFind" />
+  </div>
   <bill-list bill-list='$ctrl.billList' edit="$ctrl.editQuotation(bill)" print="$ctrl.print(bill)"></bill-list>
 </div>

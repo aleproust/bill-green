@@ -30,8 +30,14 @@ export class BillingListController {
       })
   }
 
-//   findBillsByCustomer(customer){
-//     this._BillsService.findBillByCustomer(customer, 'FACTURE').then(bills => this.billList = bills)
-//   }
+  findByCustomer(customer){
+    if(customer){
+      this._BillsService.findBillByCustomer(customer, 'FACTURE').then(bills => this.billList = bills)
+    }
+    else{
+      this.changeMonth(this.selectedMonth)
+    }
+
+  }
 }
 export default BillingListController

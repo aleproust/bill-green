@@ -29,7 +29,7 @@ export class BillsService {
       value: date
     }
     return this._$http.post(`/api/bills/find`, payload)
-    .then(bills => bills.filter(bill => bill.data.type === type))
+      .then(bills => bills.filter(bill => bill.data.type === type))
   }
 
   postBill(bill) {
@@ -47,22 +47,22 @@ export class BillsService {
     return this._$http.get(`/api/files/${billNumber}`)
   }
 
-  calculateInvoice(billList){
+  calculateInvoice(billList) {
     let result = 0.00
     billList.forEach(bill => {
-      if(bill.data.isPaid){
+      if (bill.data.isPaid) {
         result += parseFloat(bill.data.billTotalHT)
       }
     })
     return result
   }
-  
-  findBillByCustomer(customer, type){
+
+  findBillByCustomer(customer, type) {
     let payload = {
-        criteria:'customerName',
-        value:customer
+      criteria: 'customerName',
+      value: customer
     }
     return this._$http.post(`/api/bills/find`, payload)
-    .then(bills => bills.filter(bill => bill.data.type === type))
+      .then(bills => bills.filter(bill => bill.data.type === type))
   }
 }

@@ -998,7 +998,12 @@ Tuiles
     }
 }
 
-
+.row-filter{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
 /* Larger than mobile */
 
 @media (min-width: 400px) {}

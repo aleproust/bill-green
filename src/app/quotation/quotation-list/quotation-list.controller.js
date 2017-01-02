@@ -33,5 +33,16 @@ export class QuotationListController {
     this._BillsService.findBillsByMonth(month, 'DEVIS')
       .then(bills => this.billList = bills)
   }
+
+
+  findByCustomer(customer){
+    if(customer){
+      this._BillsService.findBillByCustomer(customer, 'DEVIS').then(bills => this.billList = bills)
+    }
+    else{
+      this.changeMonth(this.selectedMonth)
+    }
+
+  }
 }
 export default QuotationListController
