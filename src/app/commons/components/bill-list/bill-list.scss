@@ -35,7 +35,14 @@ bill-list{
       border-bottom: 3px solid $white-forit;
       background-color: $white-spirit;
     }
+
     .action-button{
+      margin:0 0.2rem;
+      color: $green-fox;
+      display: inline-block;
+      font-size: 2.6rem;
+    }
+    .is-paid-icon{
       margin:0 0.2rem;
       color: $green-fox;
       display: inline-block;

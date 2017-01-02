@@ -4,7 +4,7 @@
     <th>N°</th>
     <th>Date</th>
     <th>Nom du client</th>
-    <th>Actions</th>
+    <th></th>
   </tr>
   <tr class="bill-list-data" ng-repeat="bill in $ctrl.billList track by $index">
     <td ng-click="$ctrl.edit({bill:bill})">{{bill.data.number}}</td>
@@ -17,5 +17,6 @@
       <a ng-href="http://bill-api.herokuapp.com/api/files/{{bill.data.number}}" download="{{bill.data.number}}_{{bill.data.number}}.docx">
       <span class="action-button item-icon icon-download2"></span>
       </a>
+      <span class="is-paid-icon item-icon" ng-class="{'icon-star-empty':!bill.data.isPaid, 'icon-star-full':bill.data.isPaid}"></span>
   </tr>
 </table>
