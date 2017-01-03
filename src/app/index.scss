@@ -998,12 +998,13 @@ Tuiles
     }
 }
 
-.row-filter{
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row;
-  flex-wrap: wrap;
+.criteria-input{
+  width: 100%;
+  input{
+    width: 100%;
+  }
 }
+
 /* Larger than mobile */
 
 @media (min-width: 400px) {}

@@ -15,6 +15,7 @@ import { OffersComponent } from './components/offers/offers.component'
 import { BillComponent} from './components/bill/bill.component'
 import { BillListComponent} from './components/bill-list/bill-list.component'
 import { MainMenuComponent} from './components/main-menu/main-menu.component'
+import { ChooserComponent } from './components/chooser/chooser.component'
 // Commons Services
 import { ErrorService } from './services/error/error.service'
 import { CityService } from './services/city/city.service'
@@ -50,6 +51,7 @@ let CommonsModule = angular.module('bill.commons', [])
   .component('bill', BillComponent)
   .component('billList', BillListComponent)
   .component('mainMenu', MainMenuComponent)
+  .component('chooser', ChooserComponent)
 
   .value('EventEmitter', payload => ({ $event: payload }))
 
