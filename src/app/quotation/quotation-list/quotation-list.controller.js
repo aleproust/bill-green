@@ -10,13 +10,29 @@ export class QuotationListController {
   $onInit() {
     this.selectedMonth = new Date();
     this.billList = undefined
-    this._BillsService.findBillsByMonth(this.selectedMonth, 'DEVIS')
-      .then(bills => this.billList = bills)
+    this.searchCriterias = [{
+      label: 'Date',
+      value: 'date'
+    }, {
+      label: 'Nom',
+      value: 'customerName'
+    }]
+    this.searchCriteria = this.searchCriterias[0];
+    this.searchCriteriaChange(this.searchCriteria)
   }
 
   newQuotation() {
     this._$state.go('^.new')
 
+  }
+
+  searchCriteriaChange(choice) {
+    this.searchCriteria = choice;
+    if (choice.value === 'date') {
+      this.changeMonth(this.selectedMonth)
+    } else if (choice.value === 'customerName') {
+      this.findByCustomer(this.customerFind)
+    }
   }
 
   print(bill) {
@@ -29,9 +45,20 @@ export class QuotationListController {
     })
   }
 
-  changeMonth(month){
+  changeMonth(month) {
     this._BillsService.findBillsByMonth(month, 'DEVIS')
       .then(bills => this.billList = bills)
+  }
+
+
+  findByCustomer(customer) {
+    if (customer) {
+      this._BillsService.findBillByCustomer(customer, 'DEVIS').then(bills => this.billList = bills)
+
+    } else {
+      this.billList = []
+    }
+
   }
 }
 export default QuotationListController

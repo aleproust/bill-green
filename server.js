@@ -14,9 +14,9 @@ console.log(target)
 app.use('/api/', proxyMiddleware({target: target, changeOrigin: true}))
 
 // set the home page route
-app.get('/', function(req, res) {
+app.get('/*', function(req, res) {
     // make sure index is in the right directory. In this case /app/index.html
-    res.render('index');
+    res.sendfile(__dirname +'/dist/index.html');
 });
 
 

@@ -1,0 +1,33 @@
+chooser {
+
+    .chooser-parent {
+        margin-top: 1rem;
+        margin-bottom: 1.4rem;
+        height: 2.5rem;
+        width: 100%;
+        .chooser {
+            cursor:pointer;
+            padding:0.8rem;
+            width: 50%;
+            display: inline-block;
+            color: $green-fox;
+            background-color: $white-spirit;
+            border: solid 1px $green-fox;
+            font-weight: 500;
+            font-size: 1.6rem;
+            text-align: center;
+            &:first-child {
+                float: left;
+                border-radius: 3px 0 0 3px;
+            }
+            &:last-child {
+                float: right;
+                border-radius: 0 3px 3px 0;
+            }
+            &.active {
+                background-color: $green-fox;
+                color: $white-spirit;
+            }
+        }
+    }
+}

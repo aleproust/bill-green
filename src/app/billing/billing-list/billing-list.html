@@ -1,8 +1,13 @@
 <div class="container">
   <h1>Liste des factures</h1>
   <button ng-click="$ctrl.newBill()">Ajouter une facture</button>
-  <label>Mois : </label>
-  <input type="month" ng-change="$ctrl.changeMonth($ctrl.selectedMonth)" ng-model="$ctrl.selectedMonth" />
-  <bill-list bill-list='$ctrl.billList' edit="$ctrl.editBill(bill)" find-by-customer="$ctrl.findBillsByCustomer(customer)" print="$ctrl.print(bill)"></bill-list>
-  <p>Total factures payées : <strong>{{$ctrl.monthInvoice}} € .HT</strong><p>
+  <chooser choices="$ctrl.searchCriterias" select-change="$ctrl.searchCriteriaChange(choice)"></chooser>
+  <div class="criteria-input">
+    <input ng-if="$ctrl.searchCriteria.value ==='date'" type="month"  ng-change="$ctrl.changeMonth($ctrl.selectedMonth)" ng-model="$ctrl.selectedMonth" />
+    <input ng-if="$ctrl.searchCriteria.value ==='customerName'" type="text" placeholder="Recherche par nom" ng-change="$ctrl.findByCustomer($ctrl.customerFind)" ng-model="$ctrl.customerFind"
+    />
+  </div>
+  <bill-list bill-list='$ctrl.billList' edit="$ctrl.editBill(bill)" print="$ctrl.print(bill)"></bill-list>
+  <p>Total factures payées : <strong>{{$ctrl.monthInvoice}} € .HT</strong>
+    <p>
 </div>

@@ -9,7 +9,16 @@ export class BillingListController {
   $onInit() {
     this.selectedMonth = new Date();
     this.monthInvoice = 0;
-    this.changeMonth(this.selectedMonth)
+    this.searchCriterias = [{
+      label: 'Date',
+      value: 'date'
+    }, {
+      label: 'Nom',
+      value: 'customerName'
+    }]
+    this.searchCriteria = this.searchCriterias[0];
+    this.customerFind;
+    this.searchCriteriaChange(this.searchCriteria)
   }
 
   newBill() {
@@ -22,7 +31,16 @@ export class BillingListController {
     })
   }
 
-  changeMonth(month){
+  searchCriteriaChange(choice) {
+    this.searchCriteria = choice;
+    if (choice.value === 'date') {
+      this.changeMonth(this.selectedMonth)
+    } else if (choice.value === 'customerName') {
+      this.findByCustomer(this.customerFind)
+    }
+  }
+
+  changeMonth(month) {
     this._BillsService.findBillsByMonth(month, 'FACTURE')
       .then(bills => {
         this.billList = bills
@@ -30,8 +48,17 @@ export class BillingListController {
       })
   }
 
-//   findBillsByCustomer(customer){
-//     this._BillsService.findBillByCustomer(customer, 'FACTURE').then(bills => this.billList = bills)
-//   }
+  findByCustomer(customer) {
+    if (customer) {
+      this._BillsService.findBillByCustomer(customer, 'FACTURE').then(bills => {
+        this.billList = bills
+        this.monthInvoice = this._BillsService.calculateInvoice(bills)
+      })
+
+    } else {
+      this.billList = []
+      this.monthInvoice = 0.00;
+    }
+  }
 }
 export default BillingListController

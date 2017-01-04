@@ -1,0 +1,8 @@
+<div class="chooser-parent">
+  <div class="chooser" ng-class="{'active':$ctrl.choice === $ctrl.choices[0]}" ng-click="$ctrl.choiceChange($ctrl.choices[0])">
+    {{$ctrl.choices[0].label}}
+  </div>
+  <div class="chooser" ng-class="{'active':$ctrl.choice === $ctrl.choices[1]}" ng-click="$ctrl.choiceChange($ctrl.choices[1])">
+    {{$ctrl.choices[1].label}}
+  </div>
+</div>
