@@ -5,9 +5,10 @@ export function routerConfig($stateProvider, $urlRouterProvider, $locationProvid
     template: '<ui-view/>',
     abstract: true,
     resolve: {
-      settings: function () {
+      wakeup: function ($http) {
         'ngInject';
         // Use resolve carefully (blocking)
+        $http.get('/api/version')
         return true
       }
     }

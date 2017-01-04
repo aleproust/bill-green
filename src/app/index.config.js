@@ -10,7 +10,7 @@ export function config ($logProvider, $httpProvider, ErrorServiceProvider) {
   $httpProvider.defaults.useXDomain = true;
   $httpProvider.interceptors.push(() => ( {
     request: function (config) {
-      if (!config.timeout) config.timeout = 3000
+      if (!config.timeout) config.timeout = 6000
       return config
     },
     response: function (response) {
