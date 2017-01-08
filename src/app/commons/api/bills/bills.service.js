@@ -44,7 +44,7 @@ export class BillsService {
   }
 
   getBillDoc(billNumber) {
-    return this._$http.get(`/api/files/${billNumber}`)
+    return this._$http.get(`/api/files/${billNumber}`, {responseType: 'arraybuffer'})
   }
 
   calculateInvoice(billList) {

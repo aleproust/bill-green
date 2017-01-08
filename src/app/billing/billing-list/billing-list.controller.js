@@ -48,11 +48,28 @@ export class BillingListController {
       })
   }
 
+  print(bill) {
+    return this._BillsService.getBillDoc(bill.number).then(data => {
+      let blob = new Blob([data], {type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document"});
+      let objectUrl = URL.createObjectURL(blob);
+      let a = document.createElement('a');
+      a.href = objectUrl;
+      a.download = `Facture_${bill.data.customerName}_${bill.data.formattedDate}_.docx`;
+      a.target = '_blank';
+      a.click();
+    })
+  }
+
   downloadXLSX(){
     return this._BillsService.exportBillList(this.billList).then(data => {
       let blob = new Blob([data], {type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"});
       let objectUrl = URL.createObjectURL(blob);
-      window.open(objectUrl);
+      let month = moment(this.selectedMonth).format('MM-YYYY')
+      let a = document.createElement('a');
+      a.href = objectUrl;
+      a.download = `Facture_${month}.xlsx`;
+      a.target = '_blank';
+      a.click();
     })
   }
 

@@ -10,12 +10,9 @@
     <td ng-click="$ctrl.edit({bill:bill})">{{bill.data.date | date:'dd/MM/yy'}}</td>
     <td ng-click="$ctrl.edit({bill:bill})">{{bill.data.customerName}}</td>
     <td>
-      <!--<a ng-href="http://localhost:8089/api/files/{{bill.data.number}}" download="{{bill.data.number}}_{{bill.data.number}}.docx">
-      -->
-
-      <a ng-href="http://bill-api.herokuapp.com/api/files/{{bill.data.number}}" download="{{bill.data.number}}_{{bill.data.number}}.docx">
-      <span class="action-button item-icon icon-download2"></span>
+      <span  ng-click='$ctrl.print({bill:bill})' class="action-button item-icon icon-download2"></span>
       </a>
       <span class="is-paid-icon item-icon" ng-class="{'icon-star-empty':!bill.data.isPaid, 'icon-star-full':bill.data.isPaid}"></span>
+    </td>
   </tr>
 </table>

@@ -36,7 +36,15 @@ export class QuotationListController {
   }
 
   print(bill) {
-    return this._BillsService.getBillDoc(bill.number)
+    return this._BillsService.getBillDoc(bill.number).then(data => {
+      let blob = new Blob([data], {type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document"});
+      let objectUrl = URL.createObjectURL(blob);
+      let a = document.createElement('a');
+      a.href = objectUrl;
+      a.download = `Devis_${bill.data.customerName}_${bill.data.formattedDate}_.docx`;
+      a.target = '_blank';
+      a.click();
+    })
   }
 
   editQuotation(bill) {
