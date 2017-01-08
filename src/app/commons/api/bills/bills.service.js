@@ -65,4 +65,8 @@ export class BillsService {
     return this._$http.post(`/api/bills/find`, payload)
       .then(bills => bills.filter(bill => bill.data.type === type))
   }
+
+  exportBillList(billList){
+    return this._$http.post(`/api/files/generateExcel`, billList, {responseType: 'arraybuffer'})
+  }
 }

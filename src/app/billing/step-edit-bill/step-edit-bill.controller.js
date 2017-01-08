@@ -22,7 +22,7 @@ export class StepEditBillController {
   }
 
   duplicate(bill){
-      this._$state.go('^.new', {bill: bill});
+    this._$state.go('^.new', {bill: bill});
   }
 
 }

@@ -59,7 +59,11 @@
           Payée
         </label>
     <input type="text" class="bill-paid-method" ng-model="paidMethod" placeholder="Méthode de paiement" />
+    <select ng-model="$ctrl.bill.billType" ng-options="type as type for type in $ctrl.billTypes">
+        <option value="">---- Type de devis ----</option>
+    </select>
    </div>
+
 
 
   <button class="button button-primary" ng-disabled="$ctrl.billForm.$invalid" ng-click="$ctrl.saveBill($ctrl.bill)">Enregistrer</button>

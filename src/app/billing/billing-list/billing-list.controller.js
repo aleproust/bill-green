@@ -48,6 +48,14 @@ export class BillingListController {
       })
   }
 
+  downloadXLSX(){
+    return this._BillsService.exportBillList(this.billList).then(data => {
+      let blob = new Blob([data], {type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"});
+      let objectUrl = URL.createObjectURL(blob);
+      window.open(objectUrl);
+    })
+  }
+
   findByCustomer(customer) {
     if (customer) {
       this._BillsService.findBillByCustomer(customer, 'FACTURE').then(bills => {

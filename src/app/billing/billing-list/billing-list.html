@@ -7,7 +7,9 @@
     <input ng-if="$ctrl.searchCriteria.value ==='customerName'" type="text" placeholder="Recherche par nom" ng-change="$ctrl.findByCustomer($ctrl.customerFind)" ng-model="$ctrl.customerFind"
     />
   </div>
+  
   <bill-list bill-list='$ctrl.billList' edit="$ctrl.editBill(bill)" print="$ctrl.print(bill)"></bill-list>
   <p>Total factures payées : <strong>{{$ctrl.monthInvoice}} € .HT</strong>
-    <p>
+  <span class='download-button item-icon icon-file-excel' ng-click="$ctrl.downloadXLSX()"></span>
+  </p>
 </div>

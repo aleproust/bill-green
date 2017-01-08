@@ -8,6 +8,7 @@ export class BillController {
   $onInit() {
     this.availableCities = []
     this.tvaChoices = ['10', '20']
+    this.billTypes = ['Intervention', 'Fourniture végétaux', 'CE 1er semestre', 'CE 2ème semestre', 'CE échéance 1er trimestre', 'CE échéance 2ème trimestre', 'CE échéance 3ème trimestre', 'CE échéance 4ème trimestre', 'CE annuel']
     if(this.bill && this.bill.customerCity){
       this.availableCities[0] = this.bill.customerCity
     }
